@@ -89,7 +89,21 @@ and a character and sends to std::cout number-1 spaces followed by the character
 Unlike array indexing, the position of the leftmost character on the screen is position 1.
 If the positioning number is less than 1, just output the character.
 */
-void plotCharacterAtPosition (int num, char c);
+/*
+Given a int num and char c, sends num-1 spaces followed by char c to std::cout.
+If num < 1, the char c is just outputed.
+*/
+void plotCharacterAtPosition (int num, char c) {
+  char space = " ";
+
+  //Print num - 1 spaces
+  for(int numberOfSpaces = 0; numberOfSpaces < num-1; numberOfSpaces++) {
+    cout << space;
+  }
+
+  //Print char c
+  cout << c;
+}
 
 
 /*
