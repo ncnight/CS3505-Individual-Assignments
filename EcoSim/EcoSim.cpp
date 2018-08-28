@@ -14,6 +14,12 @@ EcoSim - Plots flucuations in rabbit and fox populations in an ascii chart using
 
 //Todo items
 // Does it matter the order which initial fox and rabbit populations are captured?
+// is it ok to declare functions before or is it standard to put main on the bottom?
+
+//Declaring functions so that main will compile
+void updatePopulations(double g, double p, double c, double m, double K, double& numRabbits, double& numFoxes);
+void plotPopulations(double numRabbits, double numFoxes, double fractionalScale);
+void incrementCounter(int& counter);
 
 /*
 A main function that sets the parameters needed for the update
@@ -95,7 +101,7 @@ Given a int num and char c, sends num-1 spaces followed by char c to std::cout.
 If num < 1, the char c is just outputed.
 */
 void plotCharacterAtPosition (int num, char c) {
-  char space = " ";
+  char space = ' ';
 
   //Print num - 1 spaces
   for(int numberOfSpaces = 0; numberOfSpaces < num-1; numberOfSpaces++) {
