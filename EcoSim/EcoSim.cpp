@@ -45,6 +45,7 @@ int main(){
   double foxMortalityRate = 0.2; //m
   double carryCapacity = 1000; //k
   int numberOfGenerations = 500; //Number of steps
+  double fractionalScale = 0.1;
 
   //obtaining user inputs
   cout << "Enter initial population of the foxes then the rabbits." << endl;
@@ -54,6 +55,9 @@ int main(){
     cout << endl;
   }
 
+  //Plot initial generation
+  plotPopulations(rabbitPopulation, foxPopulation, fractionalScale);
+
   //Looping for each generation and printing the values for fox and rabbit populations
   int currentGeneration = 0;
   while(currentGeneration < 500 && foxPopulation > 0 && rabbitPopulation > 0) {
@@ -61,8 +65,9 @@ int main(){
     updatePopulations(rabbitGrowth, predationRate, foxPreyConversion, foxMortalityRate, carryCapacity,
       rabbitPopulation, foxPopulation);
 
+    plotPopulations(rabbitPopulation, foxPopulation, fractionalScale);
 
-
+    incrementCounter(currentGeneration);
   }
 }
 
@@ -101,7 +106,7 @@ Given a int num and char c, sends num-1 spaces followed by char c to std::cout.
 If num < 1, the char c is just outputed.
 */
 void plotCharacterAtPosition (int num, char c) {
-  char space = ' ';
+  char space = '-';
 
   //Print num - 1 spaces
   for(int numberOfSpaces = 0; numberOfSpaces < num-1; numberOfSpaces++) {
@@ -143,6 +148,8 @@ void plotPopulations(double numRabbits, double numFoxes, double fractionalScale)
   //In the case both are positions are the same, output "*" instead and return.
   if(rabbitPosition == foxPosition) {
     plotCharacterAtPosition(rabbitPosition, tieChar);
+    //End with endl
+    cout << endl;
     return;
   }
 
@@ -158,6 +165,9 @@ void plotPopulations(double numRabbits, double numFoxes, double fractionalScale)
     plotCharacterAtPosition(rabbitPosition, rabbitChar);
     plotCharacterAtPosition(foxPosition, foxChar);
   }
+
+  //end with endl
+  cout << endl;
 }
 
 /*A helper function incrementCounter that returns void and
