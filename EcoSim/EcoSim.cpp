@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 using namespace std;
 
 /*
@@ -124,7 +125,34 @@ You may find it useful to use '-' during testing rather
 than ' ' to position the 'F' and 'r' characters so you can count more easily.
 Use ' ' in your final submission.
 */
-void plotPopulations(int numRabbits, int numFoxes, double fractionalScale);
+void plotPopulations(double numRabbits, double numFoxes, double fractionalScale) {
+
+  char foxChar = 'F';
+  char rabbitChar = 'r';
+  char tieChar = '*';
+
+  int rabbitPosition = floor(numRabbits * fractionalScale) + 1;
+  int foxPosition = floor(numFoxes * fractionalScale) + 1;
+
+  //In the case both are positions are the same, output "*" instead and return.
+  if(rabbitPosition == foxPosition) {
+    plotCharacterAtPosition(rabbitPosition, tieChar);
+    return;
+  }
+
+  //Determines which needs to be outputed first
+  //Modifies the higher position so spaces aren't double outputed
+  if(rabbitPosition > foxPosition) {
+    rabbitPosition = rabbitPosition - foxPosition;
+    plotCharacterAtPosition(foxPosition, foxChar);
+    plotCharacterAtPosition(rabbitPosition, rabbitChar);
+  }
+  else if (foxPosition > rabbitPosition) {
+    foxPosition = foxPosition - rabbitPosition;
+    plotCharacterAtPosition(rabbitPosition, rabbitChar);
+    plotCharacterAtPosition(foxPosition, foxChar);
+  }
+}
 
 /*A helper function incrementCounter that returns void and
 has a pointer to an integer parameter. The function should add 1
