@@ -9,5 +9,5 @@ int factorial(int a) {
 }
 
 int main(){
-  cout << factorial(4) << " This is the new version" << endl;
+  cout << factorial(8) << endl;
 }
